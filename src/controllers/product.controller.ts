@@ -1,58 +1,34 @@
 import ProductService from '../services/product.service';
-import { logger } from '../lib/logger';
+import { NextFunction, Request, Response } from 'express';
+import { logger } from '../utils/logger';
+import { ProductData } from '@/interfaces/product.interface';
 
 class ProductController {
   productService = new ProductService();
 
-  async getAllProducts(req, res) {
+  public searchProducts = async (req: Request, res: Response, next: NextFunction) => {
     try {
       logger.info('getAllProducts fetch started');
-      const result = await this.productService.findAllProducts();
-      const { status, body } = result;
-      res.status(status).json(body || '');
+      const result: ProductData[] = await this.productService.searchProducts(req.body);
+      if(result) {
+        res.status(200).json(result || '');
+      } else {
+        res.status(204);
+      }
     } catch (e) {
       logger.error(`Exception in: getAllProducts : ${JSON.stringify(e)}`);
-      res.status(500).json(e);
+      next(e);
     }
   }
 
-  async saveProduct(req, res) {
+  public saveProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
       logger.info('saveProduct fetch started');
-      const { name, price } = req.body;
-      const result = await this.productService.saveProduct({ name, price });
-      const { status, body } = result;
-      res.status(status).json(body || '');
+      const result: ProductData = await this.productService.saveProduct(req.body);
+      res.status(201).json(result);
     } catch (e) {
       logger.error(`Exception in: saveProduct : ${JSON.stringify(e)}`);
-      res.status(500).json(e);
-    }
-  }
-
-  async editProductById(req, res) {
-    try {
-      logger.info('editProductById fetch started');
-      const { _id } = req.params;
-      const { name, price } = req.body;
-      const result = await this.productService.editProduct(_id, { name, price });
-      const { status, body } = result;
-      res.status(status).json(body || '');
-    } catch (e) {
-      logger.error(`Exception in: editProductById : ${JSON.stringify(e)}`);
-      res.status(500).json(e);
-    }
-  }
-
-  async deleteProductById(req, res) {
-    try {
-      logger.info('deleteProductById fetch started');
-      const { _id } = req.params;
-      const result = await this.productService.deleteProduct(_id);
-      const { status, body } = result;
-      res.status(status).json(body || '');
-    } catch (e) {
-      logger.error(`Exception in: deleteProductById : ${JSON.stringify(e)}`);
-      res.status(500).json(e);
+      next(e);
     }
   }
 }

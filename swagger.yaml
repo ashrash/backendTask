@@ -3,24 +3,86 @@ tags:
   description: API
 
 paths:
-  /{email}:
-    get:
+  /product:
+    post:
       tags:
-      -
-      summary: 
+      - Product
+      summary: Add Product
       parameters:
-      - name: 
-        in: path
-        description:  id
+      - name: body
+        in: body
+        description: Product Data
         required: true
+        schema:
+          $ref: '#/definitions/product'
       responses:
-        200:
-          description: 'OK'
+        201:
+          description: 'Created'
         409:
           description: 'Conflict'
         500:
           description: 'Server Error'
+  /product/search:
+    post:
+      tags:
+      - Product
+      summary: Search Product
+      parameters:
+      - name: body
+        in: body
+        description: Product search fields
+        required: false
+        schema:
+          $ref: '#/definitions/searchProduct'
+      responses:
+        200:
+          description: 'OK'
+        204:
+          description: 'No Content'
+        500:
+          description: 'Server Error'
 
+
+definitions:
+  searchProduct:
+    type: object
+    properties:
+      title:
+        type: string
+        description: title
+      description:
+        type: string
+        description: Description
+      sortField:
+        type: string
+        description: sortField
+      sortDirection:
+        type: string
+        description: sortDirection
+  product:
+    type: object
+    required:
+        - title
+        - description
+        - pictureUrl
+        - price
+        - quantity
+    properties:
+      title:
+        type: string
+        description: title
+      description:
+        type: string
+        description: Description
+      pictureUrl:
+        type: string
+        description: pictureUrl
+      price:
+        type: number
+        description: price
+      quantity:
+        type: number
+        description: quantity
 schemes:
  - https
  - http

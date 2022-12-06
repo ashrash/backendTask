@@ -1,52 +1,48 @@
-import Products from '../models/products';
+import { Op } from 'sequelize';
+import { logger } from '../utils/logger';
+import { Product, ProductData, ProductSearch } from '../interfaces/product.interface';
+import sequelize from '../models';
+import { HttpException } from '../utils/exception';
 
 class ProductService {
-  productsModel = Products;
+  public productModel = sequelize.Products;
 
-  
-  async findAllProducts() {
-    const result = await this.productsModel.find({}).lean();
-    if (result && result.length > 0) {
-      return { status: 200, body: result };
-    }
-    return { status: 204 };
-  }
+  async searchProducts(request: ProductSearch): Promise<ProductData[]> {
+    const { title, description, sortField, sortDirection } = request;
+    try {
+      const query = {
+        where: {
+          [Op.and]: [
+            { title: { [Op.like]:`${title ?? '%'}%` } },
+            { description: {[Op.like]: `${description ?? '%'}%`} }
+          ]
+        },
+        order: sortField ? [[ sortField, sortDirection ?? '']] : []
+      };
+      
+      const results: ProductData[] = await this.productModel.findAll(query);
 
-  async saveProduct(request) {
-    const product = new this.productsModel(request);
-    const result = await product.save();
-    if (result) {
-      return { status: 201, body: result };
-    }
-    return { status: 500 };
-  }
-
-  async findProductBuyId(id) {
-    const result = await this.productsModel.findById(id);
-    if (result) {
-      return result;
-    }
-    return null;
-  }
-
-  async editProduct(id, content) {
-    const result = await this.findProductBuyId(id);
-    if (result) {
-      const updatedResult = await this.productsModel.findByIdAndUpdate(id, content);
-      if (updatedResult) {
-        return { status: 200, body: updatedResult };
+      if(results.length>0) {
+        return results;
       }
-      return { status: 500, body: 'Update failed' };
+      return null;
+
+    } catch(e) {
+      logger.error(`Error occured at: Search Products ${JSON.stringify(e)}`);
+      throw new HttpException(500, `Something went wrong ${e}`);
     }
-    return { status: 204 };
   }
 
-  async deleteProduct(id) {
-    const deletedProduct = await this.productsModel.findByIdAndDelete(id);
-    if (deletedProduct) {
-      return { status: 200, body: deletedProduct };
+  async saveProduct(request: Product): Promise<ProductData> {
+    try {
+      const createdProduct: ProductData = await this.productModel.create(request,
+        { fields: ['title', 'description', 'pictureUrl', 'price', 'quantity'] });
+
+      return createdProduct;
+    } catch(e) {
+      logger.error(`Error occured at: saveProduct ${JSON.stringify(e)}`);
+      throw new HttpException(500, `Something went wrong ${e}`);
     }
-    return { status: 204 };
   }
 }
 
