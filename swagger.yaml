@@ -1,0 +1,26 @@
+tags:
+- name:
+  description: API
+
+paths:
+  /{email}:
+    get:
+      tags:
+      -
+      summary: 
+      parameters:
+      - name: 
+        in: path
+        description:  id
+        required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+schemes:
+ - https
+ - http
