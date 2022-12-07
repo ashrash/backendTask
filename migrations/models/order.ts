@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-undef */
-'use strict';
 const {
   Model
 } = require('sequelize');
@@ -18,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   Order.init({
     id: DataTypes.INTEGER,
     userId: DataTypes.BIGINT,
-    quantity: DataTypes.INTEGER,
+    totalPrice: DataTypes.DECIMAL(10, 2),
     createdDate: DataTypes.DATE,
     updatedDate: DataTypes.DATE,
   }, {

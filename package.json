@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed": "npx sequelize-cli db:seed:all",
+    "migrate":"npx sequelize-cli db:migrate",
+    "publish:db": "npm run migrate && npm run seed",
     "dev": "env-cmd -f prod.env ts-node-dev --respawn --transpile-only src/server.ts",
     "test": "nodemon . --ext ts --exec \"mocha -r ts-node/register src/tests/*.test.ts\"",
     "start": "env-cmd -f prod.env node dist/server.js",

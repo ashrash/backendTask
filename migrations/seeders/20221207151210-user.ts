@@ -1,6 +1,6 @@
 module.exports = {
     up: (queryInterface) => {
-      return queryInterface.bulkInsert('user', [{
+      return queryInterface.bulkInsert('User', [{
         name: 'John',
         username: 'johndoe',
         address: 'example@example.com',
@@ -9,6 +9,6 @@ module.exports = {
       }]);
     },
     down: (queryInterface) => {
-      return queryInterface.bulkDelete('user', null, {});
+      return queryInterface.bulkDelete('User', null, {});
     }
 };

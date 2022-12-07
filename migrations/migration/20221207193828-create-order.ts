@@ -17,7 +17,7 @@ module.exports = {
           key: 'id'
         }  
       },
-      quantity: { type: Sequelize.INTEGER, allowNull: false },
+      totalPrice: { type: Sequelize.DECIMAL(10, 2), allowNull: false },
       createdDate: {
         allowNull: false,
         type: Sequelize.DATE

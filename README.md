@@ -1,11 +1,12 @@
-# Node TS BoilerPlate
+# Backend task
 
-Tech: Node + Express + MySQL/sequelize + Typescript + Swagger + Docker
+Tech: Node + Typescript + Express + Postgres/sequelize  + Swagger + Docker
 
 CI/CD setup using github action: 
 ## Folder structure 
 ```
 ├── .github/workflows
+├── migrations
 ├── src
 │   ├── config
 │   ├── controllers
@@ -22,9 +23,14 @@ CI/CD setup using github action:
 
 
 ## Running App in DEV mode
+Prerequisites for running app 
+Install postgres database in your local machine before the following steps
 ``` 
 #Install dependencies
 npm i 
+
+#Publish database 
+npm run publish:db
 
 #Start app in dev mode. Default port: 3000
 npm run dev 
