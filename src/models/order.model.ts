@@ -8,7 +8,6 @@ const Order = (sequelize, DataTypes) => {
           primaryKey: true
         },
         userId: { type: DataTypes.BIGINT },
-        productId: { type: DataTypes.BIGINT },
         quantity: { type: DataTypes.INTEGER },
       },
       {

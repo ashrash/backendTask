@@ -3,9 +3,9 @@ DROP TABLE "Order";
 DROP TABLE "Products";
 DROP TABLE "User";
 
--- **************User ********************* --
+-- **************user ********************* --
 
-CREATE TABLE "User"
+CREATE TABLE "user"
 (
  "id"          bigint GENERATED ALWAYS AS IDENTITY,
  "username"   varchar(50) NOT NULL ,
@@ -23,9 +23,9 @@ PRIMARY KEY (id)
 CREATE TABLE "Products"
 (
  "id"          bigint GENERATED ALWAYS AS IDENTITY,
- "title"       varchar(80) NOT NULL,
+ "title"       varchar(100) NOT NULL,
  "description" varchar(200) NOT NULL ,
- "pictureUrl"  varchar(45) NOT NULL ,
+ "pictureUrl"  varchar(100) NOT NULL ,
  "price"       decimal(12,2) NOT NULL ,
  "quantity"    integer NOT NULL ,
  "createdDate" timestamp NOT NULL ,
@@ -41,18 +41,14 @@ CREATE TABLE "Order"
 (
  "id"          bigint GENERATED ALWAYS AS IDENTITY,
  "userId"      bigint NOT NULL ,
- "productId"   bigint NOT NULL ,
  "totalPrice"  integer NOT NULL ,
  "createdDate" timestamp NOT NULL ,
  "updatedDate" timestamp NOT NULL ,
 
 PRIMARY KEY (id),
-CONSTRAINT FK_1
-      FOREIGN KEY("productId") 
-	  REFERENCES "Products"(id),
 CONSTRAINT FK_ODR_1
       FOREIGN KEY("userId") 
-	  REFERENCES "User"(id)
+	  REFERENCES "user"(id)
 );
 
 

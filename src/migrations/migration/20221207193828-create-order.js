@@ -1,22 +1,23 @@
+/* eslint-disable no-undef */
+'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('User', {
+    await queryInterface.createTable('Order', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING
+      userId: { type: Sequelize.BIGINT,
+        allowNull: false,
+        references: {         
+          model: 'User',
+          key: 'id'
+        }  
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      address: {
-        type: Sequelize.STRING
-      },
+      quantity: { type: Sequelize.INTEGER, allowNull: false },
       createdDate: {
         allowNull: false,
         type: Sequelize.DATE
@@ -27,7 +28,7 @@ module.exports = {
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('User');
+  async down(queryInterface) {
+    await queryInterface.dropTable('Order');
   }
 };

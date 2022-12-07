@@ -1,6 +1,6 @@
-const User = (sequelize, DataTypes) => {
-    const User = sequelize.define(
-      "User",
+const user = (sequelize, DataTypes) => {
+    const user = sequelize.define(
+      "user",
       {
         id: {
           type: DataTypes.BIGINT,
@@ -16,7 +16,7 @@ const User = (sequelize, DataTypes) => {
         updatedAt: "updatedDate"
       }
     );
-    return User;
+    return user;
 };
 
-export default User;
+export default user;
