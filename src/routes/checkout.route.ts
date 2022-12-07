@@ -1,19 +1,22 @@
-import { CheckoutCart } from '@/dtos/checkout.dto';
-import validationMiddleware from '@/middleware/validation.middleware';
+import { AddToCart, CheckoutCart } from '../dtos/checkout.dto';
+import validationMiddleware from '../middleware/validation.middleware';
 import { Router } from 'express';
-import ProductController from '../controllers/product.controller';
+import CheckoutController from '../controllers/checkout.controller';
 
 class CheckoutRoute {
   route = '/checkout';
   router = Router();
-  productController = new ProductController();
+  checkoutController = new CheckoutController();
 
   constructor() {
     this.initializeRoutes();
   }
 
   initializeRoutes() {
-    this.router.post(`${this.route}/checkout`, validationMiddleware(CheckoutCart, 'body'), )
+    this.router.post(`${this.route}/addToCart`, validationMiddleware(AddToCart, 'body'),
+     this.checkoutController.addToCart)
+    this.router.post(`${this.route}`, validationMiddleware(CheckoutCart, 'body'),
+     this.checkoutController.checkout)
   }
 }
 

@@ -3,14 +3,17 @@ const OrderItem = (sequelize, DataTypes) => {
       "OrderItem",
       {
         productId: { type: DataTypes.BIGINT },
-        orderId: { type: DataTypes.BIGINT },
+        cartId: { type: DataTypes.BIGINT },
         quantity: { type: DataTypes.INTEGER },
       },
       {
         createdAt: "createdDate",
-        updatedAt: "updatedDate"
+        updatedAt: "updatedDate",
+        freezeTableName: true
       }
     );
+    OrderItem.removeAttribute('id');
+
     return OrderItem;
 };
 

@@ -11,10 +11,10 @@ module.exports = {
           key: 'id'
         } 
       },
-      orderId: { type: Sequelize.BIGINT,
+      cartId: { type: Sequelize.BIGINT,
         allowNull: false,
         references: {
-          model: 'Order',
+          model: 'Cart',
           key: 'id'
         } 
       },

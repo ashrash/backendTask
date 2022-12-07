@@ -1,6 +1,6 @@
-const user = (sequelize, DataTypes) => {
-    const user = sequelize.define(
-      "user",
+const User = (sequelize, DataTypes) => {
+    const User = sequelize.define(
+      "User",
       {
         id: {
           type: DataTypes.BIGINT,
@@ -13,10 +13,11 @@ const user = (sequelize, DataTypes) => {
       },
       {
         createdAt: "createdDate",
-        updatedAt: "updatedDate"
+        updatedAt: "updatedDate",
+        freezeTableName: true
       }
     );
-    return user;
+    return User;
 };
 
-export default user;
+export default User;

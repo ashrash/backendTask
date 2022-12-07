@@ -1,32 +1,27 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import Products from './products.model';
-import Order from './order.model';
+import Cart from './cart.model';
 import OrderItem from './orderItem.model';
-import user from './user.model';
+import User from './user.model';
 import { DB_HOST, DB_PASSWORD, DB_USERNAME } from '../config';
 
-console.log(`postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/myos`);
 
-const sequelize = new Sequelize(`postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/myos`);
+const sequelize = new Sequelize(`postgres://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}`);
 
 const databaseObj = {
     sequelize,
     Products : Products(sequelize, DataTypes),
-    Order : Order(sequelize, DataTypes),
+    Cart : Cart(sequelize, DataTypes),
     OrderItem : OrderItem(sequelize, DataTypes),
-    user : user(sequelize, DataTypes),
+    User : User(sequelize, DataTypes),
 };
 
-databaseObj.Products.hasMany(databaseObj.Order, {
-    foreignKey: 'productId'
-});
-
-databaseObj.user.hasMany(databaseObj.Order, {
+databaseObj.User.hasMany(databaseObj.Cart, {
     foreignKey: 'userId'
 });
 
-databaseObj.Order.hasMany(databaseObj.OrderItem, {
-    foreignKey: 'orderId'
+databaseObj.Cart.hasMany(databaseObj.OrderItem, {
+    foreignKey: 'cartId'
 });
 
 databaseObj.Products.hasMany(databaseObj.OrderItem, {

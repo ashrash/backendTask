@@ -7,6 +7,15 @@ import { HttpException } from '../utils/exception';
 class ProductService {
   public productModel = sequelize.Products;
 
+  async findProductById(productId: number): Promise<Product> {
+    const product: Product = await this.productModel.findOne({
+      where: {
+        id: productId,
+      }
+    });
+    return product;
+  }
+
   async searchProducts(request: ProductSearch): Promise<ProductData[]> {
     const { title, description, sortField, sortDirection } = request;
     try {

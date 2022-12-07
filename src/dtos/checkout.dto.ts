@@ -1,4 +1,4 @@
-import {  IsNotEmpty, IsNumber } from 'class-validator';
+import {  IsNotEmpty, IsNumber, Min } from 'class-validator';
 
 export class CheckoutCart {
     @IsNumber()
@@ -7,5 +7,23 @@ export class CheckoutCart {
 
     @IsNumber()
     @IsNotEmpty()
-    public orderId: number;
+    public cartId: number;
+}
+
+
+export class AddToCart {
+    @IsNumber()
+    @IsNotEmpty()
+    @Min(1)
+    public userId: number;
+
+    @IsNumber()
+    @IsNotEmpty()
+    @Min(1)
+    public productId: number;
+
+    @IsNumber()
+    @IsNotEmpty()
+    @Min(1)
+    public quantity: number;
 }

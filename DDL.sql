@@ -1,7 +1,8 @@
 DROP TABLE "OrderItem";
-DROP TABLE "Order";
+DROP TABLE "Cart";
 DROP TABLE "Products";
 DROP TABLE "User";
+
 
 -- **************user ********************* --
 
@@ -57,7 +58,7 @@ CONSTRAINT FK_ODR_1
 CREATE TABLE "OrderItem"
 (
  "productId"   bigint NOT NULL ,
- "orderId"     bigint NOT NULL ,
+ "cartId"     bigint NOT NULL ,
  "quantity"    integer NOT NULL ,
  "createdDate" timestamp NOT NULL ,
  "updatedDate" timestamp NOT NULL ,
@@ -66,6 +67,6 @@ CONSTRAINT FK_OI_1
       FOREIGN KEY("productId") 
 	  REFERENCES "Products"(id),
 CONSTRAINT FK_OI_2
-      FOREIGN KEY("orderId") 
-	  REFERENCES "Order"(id)        
+      FOREIGN KEY("cartId") 
+	  REFERENCES "Cart"(id)        
 );

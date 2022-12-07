@@ -1,6 +1,6 @@
 export interface OrderItem {
     productId: number;
-    orderId: number;
+    cartId: number;
     quantity: number;
     createdDate: Date;
     updatedDate: Date;
@@ -8,5 +8,6 @@ export interface OrderItem {
 
 export interface Cart {
     userId: number;
-    orderId: number;
+    cartId: number;
 }
+

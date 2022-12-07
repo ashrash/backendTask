@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface) => {
-    return queryInterface.bulkInsert('Order', [{
+    return queryInterface.bulkInsert('Cart', [{
       userId: 1,
       totalPrice: 100,
       createdDate: new Date(),
@@ -8,6 +8,6 @@ module.exports = {
     }]);
   },
   down: (queryInterface) => {
-    return queryInterface.bulkDelete('Order', null, {});
+    return queryInterface.bulkDelete('Cart', null, {});
   }
 };
