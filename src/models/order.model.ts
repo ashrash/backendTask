@@ -1,12 +1,13 @@
-const Checkout = (sequelize, DataTypes) => {
-    const Checkout = sequelize.define(
-      "Checkout",
+const Order = (sequelize, DataTypes) => {
+    const Order = sequelize.define(
+      "Order",
       {
         id: {
           type: DataTypes.BIGINT,
           unique: true,
           primaryKey: true
         },
+        userId: { type: DataTypes.BIGINT },
         productId: { type: DataTypes.BIGINT },
         quantity: { type: DataTypes.INTEGER },
       },
@@ -15,7 +16,7 @@ const Checkout = (sequelize, DataTypes) => {
         updatedAt: "updatedDate"
       }
     );
-    return Checkout;
+    return Order;
 };
 
-export default Checkout;
+export default Order;

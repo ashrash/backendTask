@@ -2,4 +2,3 @@ node_modules
 dist
 **/src/utils/debug
 **/src/utils/error
-prod.env
