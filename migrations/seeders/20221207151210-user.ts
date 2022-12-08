@@ -4,7 +4,15 @@ module.exports = {
         name: 'John',
         username: 'johndoe',
         balance: 100,
-        address: 'example@example.com',
+        address: 'johndoe@example.com',
+        createdDate: new Date(),
+        updatedDate: new Date()
+      },
+      {
+        name: 'test',
+        username: 'testuser',
+        balance: 500,
+        address: 'testuser@example.com',
         createdDate: new Date(),
         updatedDate: new Date()
       }]);

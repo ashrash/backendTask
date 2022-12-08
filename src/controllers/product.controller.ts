@@ -10,10 +10,10 @@ class ProductController {
     try {
       logger.info('getAllProducts fetch started');
       const result: ProductData[] = await this.productService.searchProducts(req.body);
-      if(result) {
+      if(result.length>0) {
         res.status(200).json(result || '');
       } else {
-        res.status(204);
+        res.sendStatus(204);
       }
     } catch (e) {
       logger.error(`Exception in: getAllProducts : ${JSON.stringify(e)}`);

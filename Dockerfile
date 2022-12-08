@@ -15,7 +15,6 @@ FROM builder as production-build-stage
 WORKDIR /usr
 COPY package.json ./
 COPY prod.env .
-COPY swagger.yaml .
 RUN npm install --only=production
 COPY --from=builder /usr/dist /usr/dist
 EXPOSE 3000

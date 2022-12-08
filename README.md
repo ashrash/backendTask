@@ -1,8 +1,9 @@
 # Backend task
 
 Tech: Node + Typescript + Express + Postgres/sequelize  + Swagger + Docker
+## Data model
 
-CI/CD setup using github action: 
+
 ## Folder structure 
 ```
 ├── .github/workflows
@@ -24,7 +25,10 @@ CI/CD setup using github action:
 
 ## Running App in DEV mode
 Prerequisites for running app 
-Install postgres database in your local machine before the following steps
+Install postgres database in your local machine before the following steps.
+
+Update migrations/config.json and ./dev.env with postgres password and continue the below steps
+
 ``` 
 #Install dependencies
 npm i 

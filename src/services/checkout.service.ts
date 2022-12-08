@@ -1,4 +1,3 @@
-import { logger } from '../utils/logger';
 import sequelize from '../models';
 import bigDecimal from 'js-big-decimal';
 import { HttpException } from '../utils/exception';
@@ -78,10 +77,10 @@ class CheckoutService {
         throw new HttpException(400, `cart not found for cart id: ${cartId}`);
       }
 
-      console.log(user);
       const { balance }: User = user;
       const { totalPrice }: Cart = cart;
-      if(balance < totalPrice) {
+
+      if(bigDecimal.compareTo(balance ,totalPrice) < 0) {
         await this.paymentStatusUpdate(userId, cartId, 'Insufficient funds');
         throw new HttpException(400, `Insufficient funds balance: ${balance}; total: ${totalPrice}`);
       }

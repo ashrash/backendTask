@@ -34,7 +34,7 @@ class ProductService {
       if(results.length>0) {
         return results;
       }
-      return null;
+      return [];
 
     } catch(e) {
       logger.error(`Error occured at: Search Products ${JSON.stringify(e)}`);

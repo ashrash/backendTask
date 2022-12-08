@@ -67,7 +67,7 @@ class App {
           description: 'Example docs',
         },
       },
-      apis: ['swagger.yaml'],
+      apis: ['./docs/swagger.yaml'],
     };
 
     const specs = swaggerJSDoc(options);

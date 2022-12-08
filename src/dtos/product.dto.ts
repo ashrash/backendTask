@@ -35,6 +35,7 @@ export class SearchProduct {
 
     @IsString()
     @IsOptional()
+    @IsIn(["title",  "price", "quantity"])
     public sortField: string;
 
     @ValidateIf(o=> o.sortField)

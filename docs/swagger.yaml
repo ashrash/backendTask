@@ -19,7 +19,7 @@ paths:
         201:
           description: 'Created'
         409:
-          description: 'Conflict'
+          description: 'Bad Request'
         500:
           description: 'Server Error'
   /product/search:
@@ -41,9 +41,75 @@ paths:
           description: 'No Content'
         500:
           description: 'Server Error'
-
+  /checkout:
+    post:
+      tags:
+      - Cart
+      summary: Add to Cart
+      parameters:
+      - name: body
+        in: body
+        description: Cart Data
+        required: true
+        schema:
+          $ref: '#/definitions/checkout'
+      responses:
+        200:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        500:
+          description: 'Server Error'
+  /checkout/addToCart:
+    post:
+      tags:
+      - Cart
+      summary: Add to Cart
+      parameters:
+      - name: body
+        in: body
+        description: Cart Data
+        required: true
+        schema:
+          $ref: '#/definitions/addToCart'
+      responses:
+        200:
+          description: 'Success'
+        400:
+          description: 'Bad Request'
+        500:
+          description: 'Server Error'
 
 definitions:
+  checkout:
+    type: object
+    properties:
+      cartId:
+        type: number
+        description: cartId
+      userId:
+        type: number
+        description: userId
+  addToCart:
+    type: object
+    properties:
+      userId:
+        type: number
+        description: title
+      cartItems:
+        type: array
+        description: cartItems
+        items:
+          $ref: '#/definitions/cartItems'
+  cartItems:
+    type: object
+    properties:
+      productId:
+        type: number
+        description: productId
+      quantity:
+        type: number
+        description: quantity
   searchProduct:
     type: object
     properties:

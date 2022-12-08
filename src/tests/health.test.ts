@@ -9,6 +9,6 @@ describe('Hello API Request', () => {
     return chai.request('http://localhost:3000').get('/health')
       .then(res => {
         chai.expect(res.body).has.property('data');
-      })
+    });
   })
 })
