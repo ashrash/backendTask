@@ -9,6 +9,8 @@ Assumptions done:
 2. Adding to cart. Intermediate stage before checkout.
 3. List of cart items are sent to add items to cart. [{ productId: 1, quantity: 2}]
 4. Checking out cart proceeds to payment deducts balance from user wallet.
+5. User can save instances of carts as wishlists for instant checkout.
+
 
 ## Folder structure 
 ```
