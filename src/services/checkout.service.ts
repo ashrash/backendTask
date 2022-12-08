@@ -43,7 +43,7 @@ class CheckoutService {
         const { quantity: stockLevel, price }: Product = product;
         if(stockLevel < quantity) {
           throw new HttpException(400,
-            `Product low on stock: Available quatity: ${stockLevel}; Requested quantity: ${quantity}`);
+            `Product low on stock: Available quatity: ${stockLevel}; Requested quantity: ${quantity}; Product id: ${productId}`);
         }
         await this.orderItemModel.create({productId, cartId, quantity },
           { fields: ['productId', 'cartId', 'quantity'] });
