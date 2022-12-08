@@ -3,7 +3,7 @@ const Cart = (sequelize, DataTypes) => {
       "Cart",
       {
         id: {
-          type: DataTypes.BIGINT,
+          type: DataTypes.INTEGER,
           unique: true,
           primaryKey: true
         },

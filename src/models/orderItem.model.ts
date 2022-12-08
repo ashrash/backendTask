@@ -2,8 +2,8 @@ const OrderItem = (sequelize, DataTypes) => {
     const OrderItem = sequelize.define(
       "OrderItem",
       {
-        productId: { type: DataTypes.BIGINT },
-        cartId: { type: DataTypes.BIGINT },
+        productId: { type: DataTypes.INTEGER },
+        cartId: { type: DataTypes.INTEGER },
         quantity: { type: DataTypes.INTEGER },
       },
       {

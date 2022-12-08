@@ -5,13 +5,23 @@ class UserService {
   public userModel = sequelize.User;
 
   async findUserById(userId: number): Promise<User> {
-    const product: User = await this.userModel.findOne({
+    const user: User = await this.userModel.findOne({
       where: {
         id: userId,
       }
     });
-    return product;
+    return user;
   }
+
+  async updateBalance(userId: number, cost: number): Promise<User> {
+    const user: User = await this.userModel.update({ balance: cost },{
+      where: {
+        id: userId,
+      }
+    });
+    return user;
+  }
+
 }
 
 export default UserService;

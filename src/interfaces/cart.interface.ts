@@ -6,12 +6,18 @@ export interface Cart {
     updatedDate: Date;
 }
 
-export interface AddCart {
-    userId: number;
-    cartId: number;
+export interface CartItem {
     productId: number;
     quantity: number;
 }
+
+export interface AddCart {
+    userId: number;
+    cartId: number;
+    cartItems: CartItem[];
+}
+
+
 
 export interface AddCartResponse {
     cartId: number,

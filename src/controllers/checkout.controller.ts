@@ -1,7 +1,7 @@
 import CheckoutService from '../services/checkout.service';
 import { NextFunction, Request, Response } from 'express';
 import { logger } from '../utils/logger';
-import Checkout from '../interfaces/checkout.interfact';
+import { Checkout } from '../interfaces/checkout.interfact';
 import { AddCartResponse } from '../interfaces/cart.interface';
 
 class CheckoutController {

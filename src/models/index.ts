@@ -3,6 +3,8 @@ import Products from './products.model';
 import Cart from './cart.model';
 import OrderItem from './orderItem.model';
 import User from './user.model';
+import Checkout from './checkout.model';
+
 import { DB_HOST, DB_PASSWORD, DB_USERNAME } from '../config';
 
 
@@ -14,7 +16,16 @@ const databaseObj = {
     Cart : Cart(sequelize, DataTypes),
     OrderItem : OrderItem(sequelize, DataTypes),
     User : User(sequelize, DataTypes),
+    Checkout : Checkout(sequelize, DataTypes),
 };
+
+databaseObj.Cart.hasMany(databaseObj.Checkout, {
+    foreignKey: 'cartId'
+});
+
+databaseObj.User.hasMany(databaseObj.Checkout, {
+    foreignKey: 'userId'
+});
 
 databaseObj.User.hasMany(databaseObj.Cart, {
     foreignKey: 'userId'

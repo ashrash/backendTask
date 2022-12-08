@@ -10,13 +10,7 @@ export class CheckoutCart {
     public cartId: number;
 }
 
-
-export class AddToCart {
-    @IsNumber()
-    @IsNotEmpty()
-    @Min(1)
-    public userId: number;
-
+class CartItem {
     @IsNumber()
     @IsNotEmpty()
     @Min(1)
@@ -27,3 +21,15 @@ export class AddToCart {
     @Min(1)
     public quantity: number;
 }
+
+
+export class AddToCart {
+    @IsNumber()
+    @IsNotEmpty()
+    @Min(1)
+    public userId: number;
+
+    @IsNotEmpty()
+    public cartItems: CartItem[];
+}
+

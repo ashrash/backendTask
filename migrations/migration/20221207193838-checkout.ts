@@ -3,26 +3,33 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('User', {
+    await queryInterface.createTable('Checkout', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
-        type: Sequelize.STRING,
+      userId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'User',
+          key: 'id'
+        } 
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      cartId: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: 'Cart',
+            key: 'id'
+          } 
       },
-      address: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      checkoutStatus: {
+          type: Sequelize.STRING,
+          allowNull: false,
       },
-      balance: { type: Sequelize.DECIMAL(10, 2), allowNull: false },
       createdDate: {
         allowNull: false,
         type: Sequelize.DATE
@@ -34,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('User');
+    await queryInterface.dropTable('Checkout');
   }
 };

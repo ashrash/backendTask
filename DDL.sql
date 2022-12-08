@@ -1,4 +1,5 @@
 DROP TABLE "OrderItem";
+DROP TABLE "Checkout";
 DROP TABLE "Cart";
 DROP TABLE "Products";
 DROP TABLE "User";

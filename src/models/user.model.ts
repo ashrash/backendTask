@@ -3,13 +3,14 @@ const User = (sequelize, DataTypes) => {
       "User",
       {
         id: {
-          type: DataTypes.BIGINT,
+          type: DataTypes.INTEGER,
           unique: true,
           primaryKey: true
         },
         username: { type: DataTypes.STRING },
         name: { type: DataTypes.STRING },
         address: { type: DataTypes.STRING },
+        balance: { type: DataTypes.DECIMAL(10, 2) }
       },
       {
         createdAt: "createdDate",
