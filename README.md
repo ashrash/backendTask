@@ -2,6 +2,7 @@
 
 Tech: Node + Typescript + Express + Postgres/sequelize  + Swagger + Docker
 ## Data model
+![Screenshot 2022-12-08 at 2 06 03 PM](https://user-images.githubusercontent.com/7907139/206398494-293a3002-ee18-48f4-962c-48585cbbb898.png)
 
 
 ## Folder structure 
